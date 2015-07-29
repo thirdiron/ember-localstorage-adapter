@@ -190,7 +190,7 @@
       }
     },
 
-    query: function (records, query) {
+    query: function (store, typeClass, query, records) {
       var results = [], record;
 
       function recordMatchesQuery(record) {
@@ -204,12 +204,11 @@
         });
       }
 
-      for (var id in records) {
-        record = records[id];
+      records.forEach(function(record) {
         if (recordMatchesQuery(record)) {
           results.push(Ember.copy(record));
         }
-      }
+      });
       return results;
     },
 
